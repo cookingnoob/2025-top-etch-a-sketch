@@ -5,6 +5,12 @@ function elementFactory(typeOfElement, className) {
   element.classList.add(className);
 
   body.append(element);
+  return element;
 }
 
-elementFactory("div", "container");
+function createBoard() {
+  const container = elementFactory("div", "container");
+  container.textContent = "hola hola";
+  console.log(container);
+}
+createBoard();
