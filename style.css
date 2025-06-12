@@ -5,7 +5,19 @@ body {
 }
 
 .container {
-  height: 500px;
-  width: 500px;
+  height: 900px;
+  width: 900px;
   border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.cell {
+  display: flex;
+  flex: 1 0 56px;
+  border: 1px solid rgb(183, 183, 183);
+}
+.hovered {
+  background-color: black;
 }

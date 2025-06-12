@@ -9,10 +9,16 @@ function elementFactory(typeOfElement, className) {
 
 function createBoard() {
   const container = elementFactory("div", "container");
-  Array.apply(null, Array(256)).map((c, index) => {
+  Array.apply(null, Array(256)).map((c) => {
     const cell = elementFactory("div", "cell");
+    cell.addEventListener("mouseover", handleHover);
     container.appendChild(cell);
   });
 }
 
 createBoard();
+
+function handleHover(e) {
+  const button = e.target;
+  button.classList.toggle(".hovered");
+}
