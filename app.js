@@ -7,18 +7,17 @@ function elementFactory(typeOfElement, className) {
   return element;
 }
 
-function createBoard() {
+function createBoard(rows, cols) {
   const container = elementFactory("div", "container");
-  Array.apply(null, Array(256)).map((c) => {
+  Array.apply(null, Array(rows * cols)).map((c) => {
     const cell = elementFactory("div", "cell");
     cell.addEventListener("mouseover", handleHover);
     container.appendChild(cell);
   });
 }
 
-createBoard();
+createBoard(16, 16);
 
 function handleHover(e) {
   const button = e.target;
-  button.classList.toggle(".hovered");
 }
