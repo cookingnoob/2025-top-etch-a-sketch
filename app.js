@@ -9,8 +9,10 @@ buttonContainer.append(colorButtonContainer, numberButtonContainer);
 colorButtonContainer.append(colorSwatch);
 body.append(buttonContainer);
 
-let color1 = "white";
-let color2 = "hsl(0, 0%,0%)";
+let color1 = "rgb(255, 255,255)";
+let color2 = "rgb(0, 0, 0)";
+let isBlack = true;
+let isGrayScale = false;
 
 colorSwatch.style.background = color2;
 
@@ -34,6 +36,9 @@ function createBoard(rows, cols) {
 
 function handleHover(e, color1, color2) {
   const button = e.target;
+  if (isGrayScale) {
+    handleGrayScale();
+  }
   button.style.backgroundColor =
     button.style.backgroundColor === color2 ? color1 : color2;
 }
@@ -59,28 +64,46 @@ function handleNewBoard(e) {
 }
 
 function handleGrayScale() {
-  const originalLightValue = color2.split(",")[2].split("%")[0];
-  const newLightValue = +originalLightValue + 2;
-  color2 = `hsl(0, 0%,${newLightValue}%)`;
+  const originalLightValue = color2.split(",")[2].split(")")[0];
+  if (+originalLightValue === 100) {
+    isBlack = false;
+  } else if (+originalLightValue === 0) {
+    isBlack = true;
+  }
+  const newLightValue = isBlack
+    ? +originalLightValue + 2
+    : +originalLightValue - 2;
+  color2 = `rgb(${newLightValue}, ${newLightValue},${newLightValue})`;
   colorSwatch.style.backgroundColor = color2;
 }
 
+function toggleGrayScale(e) {
+  if (isGrayScale) {
+    color2 = "rgb(0, 0,0)";
+  }
+  isGrayScale = !isGrayScale;
+  const button = e.target;
+  button.textContent = `${
+    isGrayScale ? "Black and White" : "50 Shades of Gray"
+  }`;
+}
+
 function handleRandomColor() {
-  const h = randomHSLValue(1, 360);
-  const s = randomHSLValue(0, 100);
-  const l = randomHSLValue(0, 100);
-  const hsl = `hsl(${h} ${s}% ${l}%)`;
-  color2 = hsl;
+  const r = randomNumber(0, 250);
+  const g = randomNumber(0, 250);
+  const b = randomNumber(0, 250);
+
+  color2 = `rgb(${r}, ${g}, ${b})`;
   colorSwatch.style.background = color2;
 }
 
-function randomHSLValue(min, max) {
+function randomNumber(min, max) {
   return min + Math.floor(Math.random() * (max - min));
 }
 
 boardButtons(16, "", "button-board", handleNewBoard);
 boardButtons(64, "", "button-board", handleNewBoard);
 boardButtons(100, "", "button-board", handleNewBoard);
-boardButtons(0, "50 Shades of Gray", "button-board", handleGrayScale);
+boardButtons(0, "50 Shades of Gray", "button-board", toggleGrayScale);
 boardButtons(0, "Random color", "button-board", handleRandomColor);
 createBoard(16, 16);
