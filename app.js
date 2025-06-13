@@ -33,13 +33,10 @@ function handleHover(e, color1 = "white", color2 = "black") {
 
 function boardButtons(num, textColor, className, handler) {
   const button = elementFactory("button", className);
-  if (num) {
-    button.textContent = `${num}x${num}`;
-  } else if (textColor) {
-    button.textContent = `${textColor}`;
-  }
+  button.textContent = num ? `${num}x${num}` : `${textColor}`;
   button.value = num;
   button.addEventListener("click", handleNewBoard);
+
   if (num) {
     numberButtonContainer.appendChild(button);
     return;
