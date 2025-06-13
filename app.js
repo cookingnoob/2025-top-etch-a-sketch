@@ -18,10 +18,10 @@ function createBoard(rows, cols) {
   });
 }
 
-createBoard(16, 16);
+createBoard(101, 101);
 
-function handleHover(e) {
+function handleHover(e, color1 = "white", color2 = "black") {
   const button = e.target;
   button.style.backgroundColor =
-    button.style.backgroundColor === "black" ? "white" : "black";
+    button.style.backgroundColor === color2 ? color1 : color2;
 }
