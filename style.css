@@ -8,6 +8,7 @@
 }
 body {
   display: flex;
+  justify-content: space-around;
 }
 
 .container {
@@ -27,6 +28,12 @@ body {
   gap: 20px;
   padding: 10px;
 }
+.btn-number-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
 .btn-color-container {
   display: flex;
   flex-direction: column;
@@ -42,4 +49,16 @@ body {
   border: 1px solid black;
   height: 40px;
   width: 40px;
+}
+button {
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+button:hover {
+  color: white;
+  background-color: black;
+  cursor: pointer;
 }

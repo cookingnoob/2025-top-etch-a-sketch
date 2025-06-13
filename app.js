@@ -4,9 +4,16 @@ const buttonContainer = elementFactory("div", "button-container");
 const numberButtonContainer = elementFactory("div", "btn-number-container");
 const colorButtonContainer = elementFactory("div", "btn-color-container");
 const colorSwatch = elementFactory("div", "color-swatch");
+const buttonGridTitle = elementFactory("h6", "btn-title");
+const swatchTitle = elementFactory("h6", "btn-title");
 
+buttonGridTitle.textContent = "Choose a grid size";
+swatchTitle.textContent = "Current color";
+
+numberButtonContainer.append(buttonGridTitle);
 buttonContainer.append(colorButtonContainer, numberButtonContainer);
-colorButtonContainer.append(colorSwatch);
+
+colorButtonContainer.append(swatchTitle, colorSwatch);
 body.append(buttonContainer);
 
 let color1 = "rgb(255, 255,255)";
