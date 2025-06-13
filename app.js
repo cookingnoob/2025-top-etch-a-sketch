@@ -6,11 +6,13 @@ const colorButtonContainer = elementFactory("div", "btn-color-container");
 const colorSwatch = elementFactory("div", "color-swatch");
 
 buttonContainer.append(colorButtonContainer, numberButtonContainer);
-
-body.append(buttonContainer, colorSwatch);
+colorButtonContainer.append(colorSwatch);
+body.append(buttonContainer);
 
 let color1 = "white";
 let color2 = "black";
+
+colorSwatch.style.background = color2;
 
 function elementFactory(typeOfElement, className) {
   const element = document.createElement(`${typeOfElement}`);
@@ -65,11 +67,13 @@ function handleRandomColor() {
   const l = randomHSLValue(0, 100);
   const hsl = `hsl(${h} ${s}% ${l}%)`;
   color2 = hsl;
+  colorSwatch.style.background = color2;
 }
 
 function randomHSLValue(min, max) {
   return min + Math.floor(Math.random() * (max - min));
 }
+
 boardButtons(16, "", "button-board", handleNewBoard);
 boardButtons(64, "", "button-board", handleNewBoard);
 boardButtons(100, "", "button-board", handleNewBoard);
