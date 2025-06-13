@@ -10,7 +10,7 @@ colorButtonContainer.append(colorSwatch);
 body.append(buttonContainer);
 
 let color1 = "white";
-let color2 = "black";
+let color2 = "hsl(0, 0%,0%)";
 
 colorSwatch.style.background = color2;
 
@@ -33,7 +33,6 @@ function createBoard(rows, cols) {
 }
 
 function handleHover(e, color1, color2) {
-  console.log(color1, color2);
   const button = e.target;
   button.style.backgroundColor =
     button.style.backgroundColor === color2 ? color1 : color2;
@@ -59,7 +58,12 @@ function handleNewBoard(e) {
   createBoard(+e.target.value, +e.target.value);
 }
 
-function handleGrayScale() {}
+function handleGrayScale() {
+  const originalLightValue = color2.split(",")[2].split("%")[0];
+  const newLightValue = +originalLightValue + 2;
+  color2 = `hsl(0, 0%,${newLightValue}%)`;
+  colorSwatch.style.backgroundColor = color2;
+}
 
 function handleRandomColor() {
   const h = randomHSLValue(1, 360);
