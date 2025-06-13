@@ -1,3 +1,11 @@
+:root {
+  --cols: 16;
+}
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
 body {
   display: flex;
   justify-content: center;
@@ -5,19 +13,16 @@ body {
 }
 
 .container {
-  height: 900px;
-  width: 900px;
+  height: 960px;
+  width: 960px;
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
-  overflow: hidden;
+  margin-top: 20px;
 }
 
 .cell {
   display: flex;
-  flex: 1 0 56px;
+  flex: 0 0 calc(100% / var(--cols));
   border: 1px solid rgb(183, 183, 183);
-}
-.hovered {
-  background-color: black;
 }
