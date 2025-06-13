@@ -96,6 +96,7 @@ function toggleGrayScale(e) {
 }
 
 function handleRandomColor() {
+  isGrayScale = false;
   const r = randomNumber(0, 250);
   const g = randomNumber(0, 250);
   const b = randomNumber(0, 250);
